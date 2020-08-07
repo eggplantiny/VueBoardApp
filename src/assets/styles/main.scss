@@ -1,3 +1,5 @@
+@import "./mixins";
+
 .container {
   padding-right: 15px;
   padding-left: 15px;
@@ -28,4 +30,8 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+}
+
+.ellipsis-1 {
+  @include ellipsis(1, 1.3em);
 }

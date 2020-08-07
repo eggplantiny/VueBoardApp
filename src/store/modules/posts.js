@@ -1,11 +1,18 @@
 import types from '@/store/types'
 import asyncUtil from '@/utils/asyncUtil'
 import $axios from '@/plugins/axios'
+import random from '@/utils/random'
+
+const thumbnails = [
+    'https://via.placeholder.com/150/771796',
+    'https://via.placeholder.com/150/92c952',
+    'https://via.placeholder.com/150/56a8c0'
+]
 
 const state = {
     items: [],
     lastIndex: 0,
-    size: 10
+    size: 8
 }
 
 const mutations = {
@@ -13,7 +20,7 @@ const mutations = {
         state.items = items
         state.lastIndex = 0
     },
-    [types.posts.mutations.index] (state, { lastIndex, size = 10 }) {
+    [types.posts.mutations.index] (state, { lastIndex, size = 8 }) {
         state.lastIndex = lastIndex
         state.size = size
     }
@@ -25,32 +32,44 @@ const actions = {
 
         try {
             res = await $axios.get('/posts')
-            commit(types.posts.mutations.items, res.data)
+            const data = res.data.map(item => {
+                item.thumbnail = thumbnails[random.getRandomInt(0, 2)]
+                return item
+            })
+            commit(types.posts.mutations.items, data)
         } catch (e) {
             console.error(e)
         }
 
         return res
     },
-    async [types.posts.actions.more] ({ commit, state }, { lastIndex, size = 10 }) {
+    async [types.posts.actions.more] ({ commit, state }) {
         await asyncUtil.delay(1000)
         const allSize = state.items.length
+        let more = true
+
+        let { lastIndex, size } = state
+
         if (allSize > lastIndex) {
             lastIndex += size
 
-            if (allSize > lastIndex) {
+            if (allSize < lastIndex) {
                 lastIndex = allSize
+                more = false
             }
 
             commit(types.posts.mutations.index, { lastIndex, size })
+        } else {
+            more = false
         }
+        return more
     }
 }
 
 const getters = {
     [types.posts.getters.items]: state => {
         const { lastIndex, size, items } = state
-        return items.slice(lastIndex, size)
+        return JSON.parse(JSON.stringify(items)).splice(0, lastIndex + size)
     }
 }
 
