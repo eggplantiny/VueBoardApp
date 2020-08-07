@@ -1,7 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
 import store from './store'
+import router from './plugins/router'
+
+import './plugins/axios'
+import './plugins/VueInfiniteLoading'
+
+import './utils/polyfill'
 
 Vue.config.productionTip = false
 

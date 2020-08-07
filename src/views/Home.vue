@@ -1,18 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    Hello World
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
+import types from '@/store/types'
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+    name: 'Home',
+    data () {
+        return {
+            posts: []
+        }
+    },
+    methods: {
+
+    },
+    async beforeMount () {
+        await this.$store.dispatch(types.posts.actions.fetch)
+        await this.$store.dispatch(types.posts.actions.more)
+    }
 }
 </script>
