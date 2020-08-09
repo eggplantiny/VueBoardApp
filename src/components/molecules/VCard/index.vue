@@ -1,15 +1,20 @@
 <template>
-    <div>
-
+    <div class="v-card">
+      <slot />
     </div>
 </template>
 
 <script>
 export default {
-name: "index"
+  name: 'VCard'
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .v-card {
+    color: black;
+    padding: 20px;
+    border: #2c3e50 solid 1px;
+    border-radius: 10px;
+  }
 </style>

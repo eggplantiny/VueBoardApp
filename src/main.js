@@ -8,6 +8,9 @@ import './plugins/VueInfiniteLoading'
 
 import './utils/polyfill'
 
+import '@/assets/styles/main.scss'
+import '@drewbot/sass-flexbox-grid/public/sass-flexbox/main.min.css'
+
 Vue.config.productionTip = false
 
 new Vue({

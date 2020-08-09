@@ -863,6 +863,11 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@drewbot/sass-flexbox-grid@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@drewbot/sass-flexbox-grid/-/sass-flexbox-grid-2.0.7.tgz#3e1a9bb995139d1f7f849ae215926b91e32ff6dc"
+  integrity sha512-cDbfmA0dgskPR83k2piT27+2eGOJZ0S/q+huJmJzTjllJr9KPhJ6/c8pr88FEL2aVnD5LvY7yITHAPrd0h8+Yg==
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
